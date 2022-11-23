@@ -16,15 +16,15 @@
     must choose one of these.After you make your choice you will get a sew set
     of options; just what set of option you get depend on what choice you
     made.This procedure is repeated over and over until you reach a final
-    state; Ifyou didn't, it isn't.<br />
+    state; Ifyou didn't, it isn't.<br /><br />
     Conceptually, you start at the root of a tree; the tree probably has some good
     leaves and some bad leaves, through it may be that the leaves are all good or all good or all bad. You want to get
     to a good leaf. At each node, beginning with the root, you choos on of its children to move to , and you keep this
-    up until you get to a leaf.<br />
+    up until you get to a leaf.<br /><br />
      Suppose you get to a bad leaf. You can backtrack to continue the search for a good
     leaf by revoking your most recent choice, abd trying out the next options. If you run out of options, revoke the
     choice that got you here, abd try another atv that node. If you endup at the root with no options left, there are no
-    good leaves to br found.<br />
+    good leaves to br found.<br /><br />
      This need an example.
   </p>
   </div>
@@ -567,9 +567,11 @@
           </table>
         
         </div>
-        <h3>Back moves ahead:</h3>
+        <div>
+          <h3>Black moves Ahead:</h3>
         <table border="1">
           <tr>
+            
             <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
@@ -577,6 +579,7 @@
             <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
           </tr>
         </table>
+        </div>
         <h3>White jumps:</h3>
         <table border="1">
           <tr>
@@ -691,6 +694,29 @@
             Along with canMove and makeMove, we are using methods puzzleSolved and printBoard with meanings that should be obvious.
             Here is some output from the program:
           </p>
+        </div>
+        <div>
+          <ol Reversed Start=16>
+            <li><b>WHITE WHITE WHITE <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> BLACK BLACK BLACK</b></li>
+            <li><b>WHITE WHITE WHITE BLACK <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> BLACK BLACK</b></li>
+            <li><b>WHITE WHITE <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> BLACK WHITE BLACK BLACK</b></li>
+            <li><b>WHITE <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> WHITE BLACK WHITE BLACK BLACK</b></li>
+            <li><b> WHITE BLACK WHITE <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN>WHITE BLACK BLACK</b></li>
+            <li><b>WHITE BLACK WHITE BLACK WHITE <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> BLACK</b></li>
+            <li><b>WHITE BLACK WHITE BLACK WHITE BLACK<SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> </b></li>
+            <li><b>WHITE BLACK WHITE BLACK <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> BLACK WHITE</b></li>
+            <li><b>WHITE BLACK <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN>BLACK WHITE BLACK WHITE </b></li>
+            <li><b><SPAN style="text-decoration: underline; white-space: pre;">          </SPAN>BLACK WHITE BLACK WHITE BLACK WHITE </b></li>
+            <li><b>BLACK <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN>WHITE BLACK WHITE BLACK WHITE </b></li>
+            <li><b>BLACK BLACK WHITE <SPAN style="text-decoration: underline; white-space: pre;">          </SPAN>WHITE BLACK WHITE </b></li>
+            <li><b>BLACK BLACK WHITE BLACK WHITE<SPAN style="text-decoration: underline; white-space: pre;">           </SPAN>WHITE </b></li>
+            <li><b>BLACK BLACK WHITE BLACK <SPAN style="text-decoration: underline; white-space: pre;">           </SPAN>WHITE WHITE</b></li>
+            <li><b>BLACK BLACK <SPAN style="text-decoration: underline; white-space: pre;">           </SPAN>BLACK WHITE WHITE WHITE</b></li>
+            <li><b>WHITE BLACK BLACK<SPAN style="text-decoration: underline; white-space: pre;">          </SPAN> WHITE WHITE WHITE </b></li>
+
+            
+            
+          </ol>
         </div>
       
       <div style="background: ghostwhite; 
