@@ -43,18 +43,15 @@
     9. E is good. Congratulations!<br />
   </p>
   </div>
-  <div style="background: ghostwhite; 
-                      font-size: 15px; 
-                      padding: 10px; 
-                      border: 1px solid lightgray; 
-                      margin: 10px;">
+  <fieldset>
     In this example we drew a picture of a tree. The tree is an abstract model of the possible sequences of choices we could
     make. There is also a data structure called a tree, but usually we don't have a data structure to tell us what choices
     we have. (If we do have an actual tree data structure, backtracking on it is called depth-first tree searching.)
-  </div>
+  </fieldset>
   <div>
   <h2>The Backtracking Algorithm</h2>
-  <pre>
+  <fieldset>
+  <pre style="color: blue;">
     boolean solve(Node n){
       if n is a leaf node{
         if the leaf is a goal code, return true 
@@ -67,17 +64,14 @@
       }
     }
   </pre>
+  </fieldset>
   </div>
-  <div style="background: ghostwhite; 
-                    font-size: 15px; 
-                    padding: 10px; 
-                    border: 1px solid lightgray; 
-                    margin: 10px;">
+  <fieldset>
     Notice that the algorithm is expressed as a boolean function. This is essential to understanding the algorithm. If
     solve(n) is true, that means node n is part of a solution--that is, node n is one of the nodes on a path from the root
     to some goal node. We say that n is solvable. If solve(n) is false, then there is no path that includes n to any goal
     node.
-  </div>
+  </fieldset>
   <div>
   <h3>How does this work?</h3>
  <ul>
@@ -90,22 +84,26 @@
 
 </p>
 </div>
-<pre >
+<fieldset>
+<pre style="color: blue;">
   for each child c of n {
     if solve(c) succeeds, return true
   }
   return else
 </pre>
+</fieldset>
 <p>
   Eventually the recursion will "bottom" out of a leaf node. if the leaf is a goal node, it is solvable; if the leaf node is not a goal
   node, it is nit solvable. this is our base case. In the above code, this is done by the lines
 </p>
-<pre>
+<fieldset>
+<pre style="color: blue;">
   if n is a leaf node{
     if the leaf is a goal node, return true
     else retun false
   }
 </pre>
+</fieldset>
 <p>
   The backtrackimg is simple but important. you should understand it thoughtly. Another way of stating it is as follows:
   </p>
@@ -122,7 +120,8 @@
     Backtracking is a rather typical recursive algorithm, and any recursive algorithm can be rewritten as a stack algorithm. In fact, 
     that is how your recursive algorithms are translated into machine or assembly language. 
   </p>
-  <pre>
+  <fieldset>
+  <pre style="color: blue;">
     boolean solve(node n){
       put node n on the stack;
       while the stack is not empty {
@@ -137,6 +136,7 @@
       return false
     }
   </pre>
+  </fieldset>
   <p>
     Starting from the root, the only nodes that can be pushed onto the stack are the children of the node currently on the top of the 
     stack, and these are only pushed on one child at a time; hence, the nodes on the stack at all times describe a valid path in the 
@@ -149,7 +149,9 @@
     Here is the recursive backtrackimg algorithm, modified slightly to print (in reverse order) the nodes along the successful path:
 
   </p>
-  <pre>
+  <fieldset>
+  <pre style="color: blue;">
+    style="color: blue;"
     boolean solve(node n ) {
       if n is a leaf node{
         if the leaf is a goal node {
@@ -168,6 +170,7 @@
       }
     }
     </pre>
+    </fieldset>
     <h3>keeping backtracking simple</h3>
     <p>
       All of these version of a backtracking algorithm are pretty simple, but when applied in a real problem, they can get pretty cluttered
@@ -208,7 +211,8 @@
     binary tree, we will say that a node might or might not be a goal node, and will contain its name. The first example in
     this paper (which we repeat here) shows a binary tree.<br /> <br /> Here's a definition of the BinaryTree class:
     </p>
-    <pre>
+    <fieldset>
+    <pre style="color: blue;">
       public class BinaryTree { 
         BinaryTree leftChild = null; 
         BinaryTree rightChild = null;
@@ -223,9 +227,11 @@
              } 
             }
     </pre>
+    </fieldset>
     <h5>Next we will create a TreeSearch class, and in it we will define a method makeTree() which constructs the above binary
     tree.</h5>
-    <pre>
+    <fieldset>
+    <pre style="color: blue;">
       static BinaryTree makeTree() { 
         BinaryTree root, a, b, c, d, e, f;
         c = new BinaryTree("C", null, null, false);
@@ -238,15 +244,19 @@
          return root; 
       }
     </pre>
+    </fieldset>
           <h5>Here's a main program to create a binary tree and try to solve it:</h5>
-          <pre>
+      <fieldset>
+      <pre style="color: blue;">
             public static void main(String args[]) {
                BinaryTree tree = makeTree();
                 System.out.println(solvable(tree));
                }
-          </pre>
+      </pre>
+      </fieldset>
           <h5>And finally, here's the recursive backtracking routine to "solve" the binary tree by finding a goal node.</h5>
-          <pre>
+          <fieldset>
+          <pre style="color: blue;">
             static boolean solvable(BinaryTree node) { 
               /* 1 */ if (node == null) return false;
                /* 2 */ if (node.isGoalNode) return true;
@@ -255,6 +265,7 @@
                  /* 5 */ return false;
                  }
           </pre>
+          </fieldset>
           <h5>Here's what the numbered lines are doing:</h5>
          <ol>
           <li>If we are given a null node, it's not solvable. This statement is so that we can call this method with the children of a
@@ -271,7 +282,8 @@
           solvable. An alternative would be to check first whether each child exists, and recur only if they do. Here's that
           alternative version:
          </p>
-         <pre>
+        <fieldset>
+         <pre style="color: blue;">
           static boolean solvable(BinaryTree node) { 
             if (node.isGoalNode) return true; 
             if (node.leftChild != null && solvable(node.leftChild)) return true;
@@ -279,6 +291,7 @@
               return false;
              }
          </pre>
+         </fieldset>
          <h5>I think the first version is simpler, but the second version is slightly more efficient.</h5>
         <h3>What are the children?</h3>
         <p>
@@ -312,7 +325,8 @@
           Used by both methods to find the next "country" (actually, the row and column of the next square on the checkerboard).
         </p>
         <p>Here's the code for method 1:</p>
-        <pre>
+        <fieldset>
+        <pre style="color: blue;">
           boolean explore1(int row, int column, int color) {
            if (row >= NUM_ROWS)return mapIsOK();
            map[row][column] = color;
@@ -324,8 +338,10 @@
           }
           
         </pre>
+      </fieldset>
         <p>And here's the code for method 2:</p>
-        <pre>
+        <fieldset>
+        <pre style="color: blue;">
           boolean explore2(int row, int column, int color) { 
             if (row >= NUM_ROWS)return true; 
             if (okToColor(row, column, color)) {
@@ -338,27 +354,28 @@
           return false; 
         }
         </pre>
+      </fieldset>
         <p>Those appear pretty similar, and you might think they are equally good. However, the timing information suggests
         otherwise:</p>
-        <table border="1" bgcolor="yellow">
+        <table border="1">
           <tr>
 
             <td></td>
 
-            <td>2 by 3 map</td>
-            <td>3 by 3 map</td>
-            <td>3 by 4 map</td>
+            <td bgcolor="gray">2 by 3 map</td>
+            <td bgcolor="gray">3 by 3 map</td>
+            <td bgcolor="gray">3 by 4 map</td>
           </tr>
           <tr>
           
-            <td>Mathod 1:</td>
+            <td bgcolor="gray">Mathod 1:</td>
             <td>60 ms</td>
             <td>940 ms</td>
             <td>60530 ms(1 minute)</td>
           </tr>
           <tr>
           
-            <td >Mathod 2:</td>
+            <td bgcolor="gray">Mathod 2:</td>
             <td>0 ms</td>
             <td>0 ms</td>
             <td>0 ms(1 minute)</td>
@@ -395,7 +412,8 @@
           Here's our debugging code. For this trivial program, there's almost more debugging code than actual code, but in larger
           programs the proportions will be better.
         </p>
-        <pre>
+        <fieldset>
+        <pre style="color: blue;">
           static String indent = ""; 
           static String name(BinaryTree node) { 
             if (node == null) return null; 
@@ -421,8 +439,10 @@
             
           }
         </pre>
+        </fieldset>
         <p>To use this code, we modify solvable as follows:</p>
-        <pre>
+        <fieldset>
+        <pre style="color: blue;">
           static boolean solvable(BinaryTree node) { 
             enter(node); 
             if (node == null) return no(node); 
@@ -432,11 +452,13 @@
             return no(node); 
           }
         </pre>
+        </fieldset>
         <div>And we get these results:</div>
+        <fieldset>
         <div>
-          <pre>
+          <pre style="color: blue;">
           Entering solvable(Root) 
-          | Entering solvable(A) 
+          |  Entering solvable(A) 
           | | Entering solvable(C) 
           | | | Entering solvable(null) 
           | | |solvable(null) returns false 
@@ -453,11 +475,12 @@
           | Entering solvable(B) 
           | | Entering solvable(E) 
           | | solvable(E) returns true 
-          | solvable(B) returns true
+          || solvable(B) returns true
           solvable(Root) returns true
           true
           </pre>
         </div>
+        </fieldset>
         <p><b>Trick #3: Never discard your debugging statements.</b></p>
         <p>
           Writing debugging statements is programming, too. Often it's as much work to debug the debugging statements as it is to
@@ -468,7 +491,8 @@
           you might introduce new bugs into your program.<br /><br /> The simple solution is to make your debugging statements conditional.
           For example,
         </p>
-        <pre>
+        <fieldset>
+        <pre style="color: blue;">
           static final boolean debugging = false;
           static void enter(BinaryTree node) { 
             if (debugging) { 
@@ -489,6 +513,7 @@
               } return false; 
           }
         </pre>
+        </fieldset>
         <p>
           In industry, actual programs often have multiple flags to control different aspects of debugging. Don't worry too much
           about making your code larger; modern compilers will notice that since the variable debugging is final, it can never be
@@ -501,21 +526,25 @@
           Exceptions. However, Java programmers don't always realize that you can create an Exception without throwing it. For
           example, the following code
         </p>
-        <pre>
+        <fieldset>
+        <pre style="color: blue;">
           new Exception("Checkpoint Charlie").printStackTrace(System.out);
         </pre>
+        </fieldset>
         <p>
           will print out a message something like this, and the program will then continue normally. That is, the above code just
           acts like a print statement.
         </p>
-        <pre>
+        <fieldset>
+        <pre style="color: blue;">
           java.lang.Exception: Checkpoint Charlie
-           at TreeSearch.solvable(TreeSearch.java:53)
-            at TreeSearch.solvable(TreeSearch.java:57)
-             at TreeSearch.main(TreeSearch.java:72)
-              at __SHELL38.run(__SHELL38.java:16)
-              at bluej.runtime.ExecServer.suspendExecution(Unknown Source)
+          | at TreeSearch.solvable(TreeSearch.java:53)
+          | at TreeSearch.solvable(TreeSearch.java:57)
+          |  at TreeSearch.main(TreeSearch.java:72)
+          |   at __SHELL38.run(__SHELL38.java:16)
+          |   at bluej.runtime.ExecServer.suspendExecution(Unknown Source)
         </pre>
+        </fieldset>
         <h3>Example: Cindy's Puzzle</h3>
         <p>
           I call the following puzzle "Cindy's puzzle" for historical reasons. You have some number n of black marbles and the
@@ -523,7 +552,7 @@
           marbles in. Start with the black marbles all at one end (say, the left), the white marbles all at the other end, and a
           free space in between.
         </p>
-       
+       <center>
         <table border="1">
           <tr>
             <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
@@ -533,7 +562,10 @@
             <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
           </tr>
           </table><br/><br/>
+          </center>
+          
         <div>The goal is to reverse the positions of the marbles:</div><br/><br/>
+        <center>
         <table border="1">
           <tr>
             <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
@@ -545,6 +577,7 @@
             
           </tr>
         </table>
+        </center>
         <p>
           The black marbles can only move to the right, and the white marbles can only move to the left (no backing up). At each
           move, a marble can either:
@@ -554,74 +587,191 @@
           <li>Jump ahead over exactly one marble of the opposite color, if the space just beyond that marble is clear.</li>
         </ul>
         <div>For example, you could make the following sequence of moves:</div>
-        <div>
-          <h3>Starting position:</h3> 
-          <table border="1">
+        <table align="center">
+          <tbody>
             <tr>
-              <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-              <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-              <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-              <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
+              <th>Starting Position: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+              <td>
+                <table border="1">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
             </tr>
-          </table>
-        
-        </div>
-        <div>
-          <h3>Black moves Ahead:</h3>
-        <table border="1">
-          <tr>
-            
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-          </tr>
+          </tbody>
         </table>
-        </div>
-        <h3>White jumps:</h3>
-        <table border="1">
-          <tr>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-          </tr>
+        <table align="center">
+          <tbody>
+            <tr>
+              <th>Black moves ahead: &nbsp;&nbsp;&nbsp;&nbsp;</th>
+              <td>
+                <table border="1">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
         </table>
-        <h3>Black moves ahead:</h3>
-        <table border="1">
-          <tr>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-          </tr>
+        <table align="center">
+          <tbody>
+            <tr>
+              <th>White jumps: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+              <td>
+                <table border="1">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
         </table>
-        <h3>Back jumps:</h3>
-        <table border="1">
-          <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-          </tr>
+        <table align="center">
+          <tbody>
+            <tr>
+              <th>Black moves ahead: &nbsp;&nbsp;&nbsp;&nbsp;</th>
+              <td>
+                <table border="1">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
         </table>
-        <h3>White moves ahead:</h3>
-        <table border="1">
-          <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/black-ball/black-ball.jpg"></td>
-            <td> <img src="./Project Media/white-ball/white-ball.jpg"></td>
-          </tr>
-        
+        <table align="center">
+          <tbody>
+            <tr>
+              <th>Black jumps: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+              <td>
+                <table border="1">
+                  <tbody>
+                    <tr>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
         </table>
-        <h3>Stuck!</h3><br/><br/>
+        <table align="center">
+          <tbody>
+            <tr>
+              <th>White moves ahead: &nbsp;&nbsp;&nbsp;&nbsp;</th>
+              <td>
+                <table border="1">
+                  <tbody>
+                    <tr>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/black-ball/black-ball.jpg" alt>
+                      </td>
+                      <td>
+                        <img src="./Project Media/white-ball/white-ball.jpg" alt>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <strong>
+          <pre align="center">
+                        <font size="4px">Stuck!</font>
+                    </pre>
+        </strong>
         <div>
         <p>
           The backtracking method is named solvable and returns a boolean. In solvable we shall need to check whether we are at a
@@ -670,13 +820,16 @@
           </p>
         </div>
         <div>
-          <pre>
+          <fieldset>
+          <pre style="color: blue;" >
             boolean solvable(int[] board) { 
               if (puzzleSolved(board)) { 
-                return true; 
-              } 
+              |  return true; 
+              }
               for (int position = 0; position < BOARD_SIZE; position++) {
-                 if (canMove(board, position)) {
+                if (canMove(board, position)) {
+                   int[] newBoard=makeMove(board, position);
+                   int[] newBoard=makeMove(board, position);
                    int[] newBoard=makeMove(board, position);
                     if (solvable(newBoard)) {
                       printBoard(newBoard); 
@@ -687,6 +840,7 @@
                 return false; 
               }
           </pre>
+          </fieldset>
         </div>
         
         <div>
@@ -719,16 +873,12 @@
           </ol>
         </div>
       
-      <div style="background: ghostwhite; 
-                  font-size: 15px; 
-                  padding: 10px; 
-                  border: 1px solid lightgray; 
-                  margin: 10px;">
+      <fieldset>
       Notice that the solution is given in reverse order: BLACK starts out on the left and WHITE on the right, as in the last
       line. I've added line numbers to the actual output in order to emphasize this point. Backtracking always produces its
       results (sequence of choices) in reverse order; it is up to you, the programmer, to reverse the results again to get
       them in the correct order.
-      </div>
+      </fieldset>
 
 </body>
 
